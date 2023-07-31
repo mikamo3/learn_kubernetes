@@ -145,3 +145,33 @@ kubectl execで任意のコマンドを実行できる
 こんなかんじのaliasを設定しておくと便利
 
 `bb nslookup demo` など
+
+# 8 コンテナの実行
+
+PodとはKubernetesにおけるスケジューリングの単位
+
+KubernetesではPodが最小のデプロイ単位
+
+理想はコンテナが1つである状態。
+
+portsフィールドはアプリケーションが待ち受けるポート番号を記載するが、実際はなくても動く、ただし書くのがベストプラクティス
+
+envで環境変数を引き渡せるがConfigMap,Secretを使うほうが良い
+
+ユーザ指定はDockerfileでもできるがrunAsUserを使うほうが柔軟にできる
+
+securityContext:
+  runasnonroot: rootで起動しようとするコンテナを拒否する
+  readOnlyRootFilesystem: コンテナ自身のファイルシステムに書き込むことを拒否する
+  allowPrivilegeEscalation: 特権モードでの実行を拒否する
+  capabilities: ケイパビリティの追加、削除
+すべてのPodとコンテナでセキュリティコンテキストを設定するのがベストプラクティス
+
+PodSecurityPolicyリソースを使用すればクラスタレベルで設定できるのでPodごとに設定が不要で楽
+
+serviceAccountNameでPodにサービスアカウントを割当できる。他のNamespaceでPodを表示したりなど
+
+ボリューム:
+  empryDir: Podのライフサイクルに紐づく一時的なディスク
+  PersistentVolumeClaimオブジェクトを作成することにより、永続的なディスクを追加できる
+  
