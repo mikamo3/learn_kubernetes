@@ -199,3 +199,29 @@ DaemonSet: Elasticsearchなどにログを送信したいときに。クラス�
 StatefulSet: Podを特定の順序で起動、終了する機能。redisクラスタなど起動順序が厳密に必要な場合など
 
 Job: Podを指定した回数だけ実行する。その後、Jobは完了したとみなす.起動トリガはJobマニフェストの作成時、
+
+CronJob: Jobを定期的に実行する
+
+Horizontal Pod Autoscaler: サービスの需要に応じてPodの数を自動的にスケールする
+
+水平とはサービスのインスタンス数を増減させること
+
+スケールで対象とするメトリクスはKubernetesのメトリクスなら何でも可能、一般的にはCPU
+
+スケール対象はDeployment
+
+OperatorとCustom Resource Definition(CRD): Kubernetesのリソースを拡張するための仕組み
+
+新しいタイプのオブジェクトを独自に作成できる
+
+Ingress: Serviceの前に配置されるロードバランサ
+
+TLS終端にもできる。その場合証明書はSecretに格納する
+
+cert-managerで証明書は自動で更新,発行できる
+
+Ingressコントローラ: Ingressリソースの管理、NGINX Ingressなどが代表
+
+Istio: サービスメッシュを提供する。複数のアプリケーションが相互に通信し、依存する場合に
+
+Envoy: 高度なロードバランシングを実現
