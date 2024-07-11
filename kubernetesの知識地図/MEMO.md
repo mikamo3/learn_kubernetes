@@ -79,5 +79,7 @@ preferredDuringSchedulingIgnorerdDuringExecutionは優先される
 
 nodeAffinity同様の必須、優先設定が可能
 
+# 2.3 Kubernetesにおけるバッチ処理
+
 
 
